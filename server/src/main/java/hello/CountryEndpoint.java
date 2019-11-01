@@ -45,15 +45,19 @@ public class CountryEndpoint {
 	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "ServiceRequest")
 	@ResponsePayload
 	public ServiceResponse getHello(@RequestPayload ServiceRequest request) throws Exception {
-		GetCountryResponse response = new GetCountryResponse();
-		response.setCountry(countryRepository.findCountry(request.getName()));
-		System.out.println(request.getName());
+
+        System.out.println(request.getName());
+
 		ServiceResponse serviceResponse =new ServiceResponse();
 		serviceResponse.setHello("privet");
+
+
 		DatatypeFactory df = DatatypeFactory.newInstance();
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTimeInMillis(new Date().getTime());
+
 		serviceResponse.setCurrentTime(df.newXMLGregorianCalendar(gc));
+
 		return serviceResponse;
 	}
 
